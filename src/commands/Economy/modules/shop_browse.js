@@ -1,6 +1,13 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ComponentType, EmbedBuilder, MessageFlags } from 'discord.js';
+import {
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle,
+    ComponentType,
+    EmbedBuilder,
+} from 'discord.js';
+
 import { shopItems } from '../../../config/shop/items.js';
-import { getColor } from '../../../config/bot.js';
+import { getColor, BotConfig } from '../../../config/bot.js';
 import { logger } from '../../../utils/logger.js';
 import { handleInteractionError } from '../../../utils/errorHandler.js';
 
@@ -8,40 +15,69 @@ export default {
     async execute(interaction, config, client) {
         try {
             const TARGET_MAX_PAGES = 3;
-            const ITEMS_PER_PAGE = Math.max(1, Math.ceil(shopItems.length / TARGET_MAX_PAGES));
-            const totalPages = Math.ceil(shopItems.length / ITEMS_PER_PAGE);
+            const ITEMS_PER_PAGE = Math.max(
+                1,
+                Math.ceil(shopItems.length / TARGET_MAX_PAGES)
+            );
+
+            const totalPages = Math.ceil(
+                shopItems.length / ITEMS_PER_PAGE
+            );
+
             let currentPage = 1;
 
+            const currencySymbol =
+                BotConfig.economy.currency.symbol;
+
+            const currencyName =
+                BotConfig.economy.currency.namePlural;
+
             const createShopEmbed = (page) => {
-                const startIndex = (page - 1) * ITEMS_PER_PAGE;
-                const pageItems = shopItems.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+                const startIndex =
+                    (page - 1) * ITEMS_PER_PAGE;
+
+                const pageItems = shopItems.slice(
+                    startIndex,
+                    startIndex + ITEMS_PER_PAGE
+                );
+
                 const embed = new EmbedBuilder()
                     .setTitle('Store')
                     .setColor(getColor('primary'))
-                    .setDescription('Use `/buy item_id:<id> quantity:<amount>` to purchase an item.');
-                pageItems.forEach(item => {
-               const itemEmoji = item.emoji ? `${item.emoji} ` : '';
-                    
-                    const currencySymbol = config.economy?.currency?.symbol || '';
-                    
-                    const currencyName = config.economy?.currency?.namePlural || 'cakes';
-                    const priceText = item.price === null
-                        ? 'PRICE TBD'
-                        : `${currencySymbol}${item.price.toLocaleString()} ${currencyName}`;
-                    
+                    .setDescription(
+                        'Use `/buy item_id:<id> quantity:<amount>` to purchase an item.'
+                    );
+
+                pageItems.forEach((item) => {
+                    const itemEmoji = item.emoji
+                        ? `${item.emoji} `
+                        : '';
+
+                    const priceText =
+                        item.price === null
+                            ? 'PRICE TBD'
+                            : `${currencySymbol}${item.price.toLocaleString()} ${currencyName}`;
+
                     embed.addFields({
                         name: `${itemEmoji}${item.name}`,
-                        value: `**Price:** ${priceText}\n${item.description}\n\n\`/buy item_id:${item.id}\``,
+                        value:
+                            `**Price:** ${priceText}\n` +
+                            `${item.description}\n\n` +
+                            `\`/buy item_id:${item.id}\``,
                         inline: false,
                     });
-                    });
                 });
-                embed.setFooter({ text: `Page ${page}/${totalPages}` });
+
+                embed.setFooter({
+                    text: `Page ${page}/${totalPages}`,
+                });
+
                 return embed;
             };
 
             const createShopComponents = (page) => {
                 if (totalPages <= 1) return [];
+
                 return [
                     new ActionRowBuilder().addComponents(
                         new ButtonBuilder()
@@ -49,11 +85,12 @@ export default {
                             .setLabel('⬅️ Previous')
                             .setStyle(ButtonStyle.Secondary)
                             .setDisabled(page === 1),
+
                         new ButtonBuilder()
                             .setCustomId('shop_next')
                             .setLabel('Next ➡️')
                             .setStyle(ButtonStyle.Secondary)
-                            .setDisabled(page === totalPages),
+                            .setDisabled(page === totalPages)
                     ),
                 ];
             };
@@ -61,44 +98,88 @@ export default {
             const message = await interaction.reply({
                 embeds: [createShopEmbed(currentPage)],
                 components: createShopComponents(currentPage),
-                flags: 0,
+                fetchReply: true,
             });
 
-            const collector = message.createMessageComponentCollector({
-                componentType: ComponentType.Button,
-                time: 300000,
-            });
+            const collector =
+                message.createMessageComponentCollector({
+                    componentType: ComponentType.Button,
+                    time: 300000,
+                });
 
             collector.on('collect', async (buttonInteraction) => {
-                if (buttonInteraction.user.id !== interaction.user.id) {
-                    await buttonInteraction.reply({ content: '❌ You cannot use these buttons. Run `/shop` to get your own shop view.', flags: 64 });
+                if (
+                    buttonInteraction.user.id !==
+                    interaction.user.id
+                ) {
+                    await buttonInteraction.reply({
+                        content:
+                            '❌ You cannot use these buttons. Run `/shop` to get your own shop view.',
+                        ephemeral: true,
+                    });
+
                     return;
                 }
+
                 const { customId } = buttonInteraction;
-                if (customId === 'shop_prev' || customId === 'shop_next') {
+
+                if (
+                    customId === 'shop_prev' ||
+                    customId === 'shop_next'
+                ) {
                     await buttonInteraction.deferUpdate();
-                    if (customId === 'shop_prev' && currentPage > 1) currentPage--;
-                    else if (customId === 'shop_next' && currentPage < totalPages) currentPage++;
-                    await buttonInteraction.editReply({
-                        embeds: [createShopEmbed(currentPage)],
-                        components: createShopComponents(currentPage),
+
+                    if (
+                        customId === 'shop_prev' &&
+                        currentPage > 1
+                    ) {
+                        currentPage--;
+                    } else if (
+                        customId === 'shop_next' &&
+                        currentPage < totalPages
+                    ) {
+                        currentPage++;
+                    }
+
+                    await interaction.editReply({
+                        embeds: [
+                            createShopEmbed(currentPage),
+                        ],
+                        components:
+                            createShopComponents(currentPage),
                     });
                 }
             });
 
             collector.on('end', async () => {
                 try {
-                    const disabledComponents = createShopComponents(currentPage);
-                    disabledComponents.forEach(row => row.components.forEach(btn => btn.setDisabled(true)));
-                    await message.edit({ components: disabledComponents });
-                } catch (error) {
-                    logger.debug('shop_browse: could not disable components on collector end', {
-                        error: error.message,
+                    const disabledComponents =
+                        createShopComponents(currentPage);
+
+                    disabledComponents.forEach((row) => {
+                        row.components.forEach((button) =>
+                            button.setDisabled(true)
+                        );
                     });
+
+                    await interaction.editReply({
+                        components: disabledComponents,
+                    });
+                } catch (error) {
+                    logger.debug(
+                        'shop_browse: could not disable components on collector end',
+                        {
+                            error: error.message,
+                        }
+                    );
                 }
             });
         } catch (error) {
-            await handleInteractionError(interaction, error, { command: 'shop_browse' });
+            await handleInteractionError(
+                interaction,
+                error,
+                { command: 'shop_browse' }
+            );
         }
     },
 };
