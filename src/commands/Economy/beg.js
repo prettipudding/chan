@@ -63,10 +63,10 @@ export default {
                 newCash += amountWon;
 
                 const successMessages = [
-                    `A kind Hyunjin drops **$${amountWon.toLocaleString()}** into your cup.`,
-                    `You spotted Changbins unattended wallet! You grab **$${amountWon.toLocaleString()}** and run.`,
-                    `Jeongin took pity on you and gave you **$${amountWon.toLocaleString()}**!`,
-                    `You found **$${amountWon.toLocaleString()}** under a park bench.`,
+                   `A kind Hyunjin drops **${botConfig.economy.currency.symbol}${amountWon.toLocaleString()}** into your cup.`,
+                    `You spotted Changbins unattended wallet! You grab **${botConfig.economy.currency.symbol}${amountWon.toLocaleString()}** and run.`,
+                    `Jeongin took pity on you and gave you **${botConfig.economy.currency.symbol}${amountWon.toLocaleString()}**!`,
+                    `You found **${botConfig.economy.currency.symbol}${amountWon.toLocaleString()}** under a park bench.`,
                 ];
 
                 replyEmbed = successEmbed(
