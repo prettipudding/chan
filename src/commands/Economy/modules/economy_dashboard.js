@@ -62,11 +62,11 @@ async function buildDashboardEmbed(guild, client) {
         .setDescription(`Manage the economy system for **${guild.name}**.\nSelect an option below to perform an action.`)
         .setColor(getColor('economy'))
         .addFields(
-            { name: '💰 Total in Circulation', value: `\`${currencySymbol}${totalInCirculation.toLocaleString()}\``, inline: true },
-            { name: '👥 Active Users', value: `\`${userCount.toLocaleString()}\``, inline: true },
-            { name: '📊 Average Balance', value: `\`${currencySymbol}${avgBalance.toLocaleString()}\``, inline: true },
-            { name: '💱 Currency Symbol', value: `\`${currencySymbol}\``, inline: true },
-            { name: '📝 Currency Name', value: `\`${currencyName}\``, inline: true },
+            { name: '💰 Total in Circulation', value: `${currencySymbol}**${totalInCirculation.toLocaleString()}**`, inline: true },
+            { name: '👥 Active Users', value: `**${userCount.toLocaleString()}**`, inline: true },
+            { name: '📊 Average Balance', value: `${currencySymbol}**${avgBalance.toLocaleString()}**`, inline: true },
+            { name: '💱 Currency Symbol', value: currencySymbol, inline: true },
+            { name: '📝 Currency Name', value: currencyName, inline: true }
         )
         .setFooter({ text: 'Dashboard closes after 10 minutes of inactivity' })
         .setTimestamp();
