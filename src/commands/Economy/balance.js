@@ -1,4 +1,5 @@
 import { SlashCommandBuilder } from 'discord.js';
+import BotConfig from '../../config/bot.js';
 import { createEmbed, errorEmbed, successEmbed, infoEmbed, warningEmbed } from '../../utils/embeds.js';
 import { getEconomyData, getMaxBankCapacity } from '../../utils/economy.js';
 import { withErrorHandling, createError, ErrorTypes } from '../../utils/errorHandler.js';
@@ -60,18 +61,18 @@ export default {
             })
                 .addFields(
                     {
-                        name: "💵 Cash",
-                        value: `$${wallet.toLocaleString()}`,
+                        name: "<:9_dns:1556805139116064839> cupcakes",
+                        value: `${BotConfig.economy.currency.symbol}${wallet.toLocaleString()}`,
                         inline: true,
                     },
                     {
-                        name: "🏦 Bank",
-                        value: `$${bank.toLocaleString()} / $${maxBank.toLocaleString()}`,
+                        name: "<:9_dns:1556805139116064839> Bank",
+                        value: `${BotConfig.economy.currency.symbol}${bank.toLocaleString()} / ${BotConfig.economy.currency.symbol}${maxBank.toLocaleString()}`,
                         inline: true,
                     },
                     {
-                        name: "💰 Total",
-                        value: `$${(wallet + bank).toLocaleString()}`,
+                        name: "<:9_dns:1556805139116064839> Total",
+                        value: `${BotConfig.economy.currency.symbol}${(wallet + bank).toLocaleString()}`,
                         inline: true,
                     }
                 )
