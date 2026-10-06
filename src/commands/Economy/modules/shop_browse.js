@@ -20,9 +20,15 @@ export default {
                     .setColor(getColor('primary'))
                     .setDescription('Use `/buy item_id:<id> quantity:<amount>` to purchase an item.');
                 pageItems.forEach(item => {
+                  const itemEmoji = item.emoji ? `${item.emoji} ` : '';
+                    
+                    const priceText = item.price === null
+                        ? 'PRICE TBD'
+                        : `${item.price.toLocaleString()} cakes`;
+                    
                     embed.addFields({
-                        name: `${item.name} (${item.id})`,
-                        value: `**Type:** ${item.type}\n **Price:** $${item.price.toLocaleString()}\n${item.description}`,
+                        name: `${itemEmoji}${item.name}`,
+                        value: `**Price:** ${priceText}\n${item.description}\n\n\`/buy item_id:${item.id}\``,
                         inline: false,
                     });
                 });
