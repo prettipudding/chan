@@ -63,9 +63,9 @@ export default {
                 newCash += amountWon;
 
                 const successMessages = [
-                    `A kind stranger drops **$${amountWon.toLocaleString()}** into your cup.`,
-                    `You spotted an unattended wallet! You grab **$${amountWon.toLocaleString()}** and run.`,
-                    `Someone took pity on you and gave you **$${amountWon.toLocaleString()}**!`,
+                    `A kind Hyunjin drops **$${amountWon.toLocaleString()}** into your cup.`,
+                    `You spotted Changbins unattended wallet! You grab **$${amountWon.toLocaleString()}** and run.`,
+                    `Jeongin took pity on you and gave you **$${amountWon.toLocaleString()}**!`,
                     `You found **$${amountWon.toLocaleString()}** under a park bench.`,
                 ];
 
@@ -77,9 +77,9 @@ export default {
                 );
             } else {
                 const failMessages = [
-                    "The police chased you off. You got nothing.",
-                    "Someone yelled, 'Get a job!' and walked past.",
-                    "A squirrel stole the single coin you had.",
+                    "Chan caught you in the act. You got nothing.",
+                    "Seungmin yelled, 'Get a job!' and walked past.",
+                    "A quokka stole the single coin you had.",
                     "You tried to beg, but you were too embarrassed and gave up.",
                 ];
 
