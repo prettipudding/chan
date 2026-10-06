@@ -1,140 +1,153 @@
 export const shopItems = [
     {
-        id: 'extra_work',
-        name: 'Extra Work Shift',
+        id: 'studio_headphones',
+        name: 'Studio Headphones',
+        price: 1200,
+        emoji: '<:Headphones:1557044580455547051>',
+        description: 'A pair of studio headphones for late-night listening.',
+        type: 'collectible',
+        roleId: null,
+    },
+
+    {
+        id: 'wolf_chan_plush',
+        name: 'Wolf Chan Plush',
         price: 5000,
-        description: 'Allows 1 extra use of the `/work` command.',
-        type: 'consumable',
-        maxQuantity: 5,
-cooldown: 86400000,
-        effect: {
-            type: 'command_boost',
-            command: 'work',
-            uses: 1
-        }
+        emoji: '<:wolfchan:1557042418405351454>',
+        description: 'A fluffy Wolf Chan plushie ♡',
+        type: 'collectible',
+        roleId: null,
     },
+
     {
-        id: 'bank_upgrade_1',
-        name: 'Bank Upgrade I',
-        price: 15000,
-        description: 'Increases bank capacity and allows more funds to be deposited.',
-        type: 'upgrade',
-        maxLevel: 5,
-        effect: {
-            type: 'bank_capacity',
-            multiplier: 1.5
-        }
+        id: 'changbin_tomagotchi',
+        name: 'Changbin Tomagotchi',
+        price: null,
+        emoji: '<:Changbinstomagotchi:1557047297538392124>',
+        description: 'A tiny Changbin companion to keep forever.',
+        type: 'collectible',
+        roleId: null,
     },
+
     {
-        id: 'diamond_pickaxe',
-        name: 'Diamond Pickaxe',
-        price: 50000,
-        description: 'Increases yield from `/mine`',
-        type: 'tool',
-        durability: 100,
-        effect: {
-            type: 'mining_yield',
-            multiplier: 2.0
-        }
+        id: 'hyunjin_keychain',
+        name: "Hyunjin's Keychain",
+        price: null,
+        emoji: '<:versacekeychain:1557044582448111646>',
+        description: "A cute Hyunjin keychain collectible.",
+        type: 'collectible',
+        roleId: null,
     },
+
     {
-        id: 'premium_role',
-        name: 'Premium Server Role',
-        price: 15000,
-        description: 'A special role granting a fancy color and a 10% daily bonus.',
-        type: 'role',
-roleId: null,
-        effect: {
-            type: 'daily_bonus',
-            multiplier: 1.1
-        }
+        id: 'felix_brownies',
+        name: 'Brownies — made by Felix xx',
+        price: null,
+        emoji: '<:Brownies:1557044583735496915>',
+        description: 'Fresh brownies made by Felix ♡',
+        type: 'collectible',
+        roleId: null,
     },
+
     {
-        id: 'lucky_clover',
-        name: 'Lucky Clover',
-        price: 10000,
-        description: 'Increases the chance of winning a higher payout on `/gamble` once.',
-        type: 'consumable',
-        maxQuantity: 10,
-        effect: {
-            type: 'gamble_boost',
-            multiplier: 1.5,
-            uses: 1
-        }
+        id: 'leebit',
+        name: 'Leebit',
+        price: null,
+        emoji: '<:leebit:1557044579235274863>',
+        description: 'A tiny Leebit collectible.',
+        type: 'collectible',
+        roleId: null,
     },
+
     {
-        id: 'fishing_rod',
-        name: '🎣 Fishing Rod',
-        price: 5000,
-        description: 'Used for fishing commands',
-        type: 'tool',
-        durability: 100,
-        effect: {
-            type: 'fishing_yield',
-            multiplier: 1.0
-        }
+        id: 'ot8_signed_album',
+        name: 'OT8 Signed Album',
+        price: null,
+        emoji: null,
+        description: 'A signed album featuring all eight members.',
+        type: 'collectible',
+        roleId: null,
     },
+
     {
-        id: 'pickaxe',
-        name: '⛏️ Pickaxe',
-        price: 7500,
-        description: 'Used for mining commands',
-        type: 'tool',
-        durability: 100,
-        effect: {
-            type: 'mining_yield',
-            multiplier: 1.2
-        }
+        id: 'han_pocky',
+        name: "Han's Pocky — cute collectible",
+        price: null,
+        emoji: '<:Pocky:1557044584666759259>',
+        description: "Han's cute Pocky collectible.",
+        type: 'collectible',
+        roleId: null,
     },
+
     {
-        id: 'laptop',
-        name: '💻 Laptop',
-        price: 15000,
-        description: 'Increases work earnings',
-        type: 'tool',
-        durability: 200,
-        effect: {
-            type: 'work_yield',
-            multiplier: 1.5
-        }
+        id: 'seungmin_polaroid',
+        name: "Seungmin's Polaroid",
+        price: null,
+        emoji: '<:Seungminpolaroid:1557044581101469737>',
+        description: "A Seungmin polaroid collectible.",
+        type: 'collectible',
+        roleId: null,
     },
+
     {
-        id: 'lucky_charm',
-        name: '🍀 Lucky Charm',
-        price: 10000,
-        description: 'Increases luck for gambling. Has 3 uses before being consumed.',
-        type: 'consumable',
-        maxQuantity: 10,
-        effect: {
-            type: 'gamble_boost',
-            multiplier: 1.3,
-            uses: 3
-        }
+        id: 'in_pc',
+        name: 'I.N PC',
+        price: null,
+        emoji: '<:innie_pc:1557042937160798288>',
+        description: 'An I.N photocard collectible.',
+        type: 'collectible',
+        roleId: null,
     },
+
     {
-        id: 'bank_note',
-        name: '📜 Bank Note',
-        price: 25000,
-        description: 'Increases bank capacity by 10,000. Can be purchased multiple times.',
-        type: 'tool',
-        durability: null,
-        effect: {
-            type: 'bank_capacity',
-            increase: 10000
-        }
+        id: 'this_and_that',
+        name: 'This & That',
+        price: null,
+        emoji: null,
+        description: 'This & That album.',
+        type: 'collectible',
+        roleId: null,
     },
+
     {
-        id: 'personal_safe',
-        name: '🔒 Personal Safe',
-        price: 30000,
-        description: 'Protects your money from theft. Prevents others from robbing you.',
-        type: 'tool',
-        durability: null,
-        effect: {
-            type: 'robbery_protection',
-            protection: true
-        }
-    }
+        id: 'karma',
+        name: 'KARMA',
+        price: null,
+        emoji: null,
+        description: 'KARMA album.',
+        type: 'collectible',
+        roleId: null,
+    },
+
+    {
+        id: 'do_it',
+        name: 'DO IT',
+        price: null,
+        emoji: null,
+        description: 'DO IT album.',
+        type: 'collectible',
+        roleId: null,
+    },
+
+    {
+        id: 'maxident',
+        name: 'MAXIDENT',
+        price: null,
+        emoji: null,
+        description: 'MAXIDENT album.',
+        type: 'collectible',
+        roleId: null,
+    },
+
+    {
+        id: 'go_saeng',
+        name: 'GO生',
+        price: null,
+        emoji: null,
+        description: 'GO生 album.',
+        type: 'collectible',
+        roleId: null,
+    },
 ];
 
 export function getItemById(itemId) {
@@ -147,56 +160,24 @@ export function getItemsByType(type) {
 
 export function getItemPrice(itemId) {
     const item = getItemById(itemId);
-    return item ? item.price : 0;
+    return item?.price ?? 0;
 }
 
 export function validatePurchase(itemId, userData) {
     const item = getItemById(itemId);
+
     if (!item) {
-        return { valid: false, reason: 'Item not found' };
+        return {
+            valid: false,
+            reason: 'Item not found',
+        };
     }
 
-    const inventory = userData.inventory || {};
-    const upgrades = userData.upgrades || {};
-
-    if (item.type === 'consumable' && item.maxQuantity) {
-        const currentQuantity = inventory[itemId] || 0;
-        if (currentQuantity >= item.maxQuantity) {
-            return { 
-                valid: false, 
-                reason: `You can only have a maximum of ${item.maxQuantity} ${item.name}s` 
-            };
-        }
-    }
-
-    if (item.type === 'upgrade' && item.maxLevel) {
-        
-        if (upgrades[itemId]) {
-            return { 
-                valid: false, 
-                reason: `You've already purchased ${item.name}` 
-            };
-        }
-    }
-
-    if (item.type === 'tool') {
-        
-        const currentQuantity = inventory[itemId] || 0;
-        if (itemId !== 'bank_note' && currentQuantity > 0) {
-            return { 
-                valid: false, 
-                reason: `You already have a ${item.name}` 
-            };
-        }
-    }
-
-    if (item.type === 'role' && item.roleId) {
-        if (userData.roles?.includes(item.roleId)) {
-            return { 
-                valid: false, 
-                reason: `You already have the ${item.name} role` 
-            };
-        }
+    if (item.price === null) {
+        return {
+            valid: false,
+            reason: 'This item is not currently available for purchase.',
+        };
     }
 
     return { valid: true };
