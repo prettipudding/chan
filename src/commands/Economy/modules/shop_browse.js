@@ -20,16 +20,20 @@ export default {
                     .setColor(getColor('primary'))
                     .setDescription('Use `/buy item_id:<id> quantity:<amount>` to purchase an item.');
                 pageItems.forEach(item => {
-                  const itemEmoji = item.emoji ? `${item.emoji} ` : '';
+               const itemEmoji = item.emoji ? `${item.emoji} ` : '';
                     
+                    const currencySymbol = config.economy?.currency?.symbol || '';
+                    
+                    const currencyName = config.economy?.currency?.namePlural || 'cakes';
                     const priceText = item.price === null
                         ? 'PRICE TBD'
-                        : `${item.price.toLocaleString()} cakes`;
+                        : `${currencySymbol}${item.price.toLocaleString()} ${currencyName}`;
                     
                     embed.addFields({
                         name: `${itemEmoji}${item.name}`,
                         value: `**Price:** ${priceText}\n${item.description}\n\n\`/buy item_id:${item.id}\``,
                         inline: false,
+                    });
                     });
                 });
                 embed.setFooter({ text: `Page ${page}/${totalPages}` });
