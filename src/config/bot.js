@@ -24,8 +24,8 @@ export const botConfig = {
     activities: [
       {
         name: "Custom Status", // required by Discord API, not shown in the client
-        state: "kiss kiss, stay",     // this is what people actually see
-        type: 4,               // Custom
+        state: "rep ノ฀𝒞𝑟𝕖𝑎𝕞𝚒 for a kiss",     // this is what people actually see
+        type: 1,               // Custom
       },
     ],
   },
@@ -93,12 +93,12 @@ export const botConfig = {
   embeds: {
     colors: {
       // Main brand colors.
-      primary: "#e9b9cs",
-      secondary: "#f5e0df",
+      primary: "#E1D8D6",
+      secondary: "#BDAFAA",
       // Standard status colors for success/error/warning/info messages.
-      success: "#fae8ee",
-      error: "#dc7090",
-      warning: "#FEE75C",
+      success: "#f9dade",
+      error: "#827679",
+      warning: "#FDEED",
       info: "#3498DB",
 
       // Neutral utility colors.
@@ -120,14 +120,14 @@ export const botConfig = {
         ended: "#303030",
       },
       ticket: {
-        open: "#57F287",
-        claimed: "#FAA61A",
-        closed: "#ED4245",
-        pending: "#99AAB5",
+        open: "#fef4f5",
+        claimed: "#dbd5d5",
+        closed: "#eacdc7",
+        pending: "#cbc5c5",
       },
-      economy: "#F1C40F",
-      birthday: "#E91E63",
-      moderation: "#9B59B6",
+      economy: "#f6e3c5",
+      birthday: "#d1c2bb",
+      moderation: "#f1e2e9",
 
       // Ticket priority color mapping.
       priority: {
@@ -140,7 +140,7 @@ export const botConfig = {
     },
     footer: {
       // Default footer text used in bot embeds.
-      text: "Titan Bot",
+      text: "ノ฀ 𝒞𝑟𝕖𝑎𝕞𝚒",
       // Footer icon URL (null = no icon).
       icon: null,
     },
@@ -160,18 +160,18 @@ export const botConfig = {
   economy: {
     currency: {
       // Currency display name.
-      name: "charm",
+      name: "cake",
       // Plural display name.
-      namePlural: "charms",
+      namePlural: "cakes",
       // Currency symbol shown in balances.
-      symbol: "$",
+      symbol: "<:9_dns:1556805139116064839>",
     },
 
     // Starting balance for new users.
     startingBalance: 0,
 
     // Maximum bank amount before upgrades (if upgrades are used).
-    baseBankCapacity: 100000,
+    baseBankCapacity: 1000000,
 
     // Daily reward amount.
     dailyAmount: 600,
@@ -181,8 +181,8 @@ export const botConfig = {
     workMax: 200,
 
     // Beg command random payout range.
-    begMin: 3,
-    begMax: 50,
+    begMin: 30,
+    begMax: 90,
 
     // Command cooldowns (milliseconds).
     cooldowns: {
